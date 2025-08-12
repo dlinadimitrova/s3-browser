@@ -1,0 +1,82 @@
+/* FileView Styles */
+.file-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: #FFFFFF;
+}
+
+.working-directory {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background-color: #2F3645;
+  border-radius: 10px;
+}
+
+.directory-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.directory-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.directory-label {
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #A0A0A0;
+  font-size: 14px;
+}
+
+.breadcrumb-item {
+  color: #4A90E2;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.breadcrumb-item:hover {
+  color: #357ABD;
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: #A0A0A0;
+}
+
+.file-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-input {
+  padding: 8px 12px;
+  background-color: #22262F;
+  border: 1px solid #4A5260;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 14px;
+  width: 200px;
+}
+
+.filter-input::placeholder {
+  color: #A0A0A0;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: #4A90E2;
+} 

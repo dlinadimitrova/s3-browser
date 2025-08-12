@@ -1,0 +1,85 @@
+import React from 'react';
+import TreeView from '../components/TreeView/TreeView';
+import FileView from '../components/FileView/FileView';
+import { ErrorState } from '../shared/components';
+import { ERROR_STATE_DEFAULTS, BROWSER_PAGE_DEFAULTS } from '../shared/constants/constants';
+import type { AWSCredentials } from '../shared/models/interfaces';
+import { useS3Browser } from '../hooks/useS3Browser';
+
+export interface BrowserPageProps {
+  credentials: AWSCredentials;
+  bucketName: string;
+}
+
+const BrowserPage: React.FC<BrowserPageProps> = ({ credentials, bucketName }) => {
+  const {
+    currentPrefix,
+    allObjects,
+    objects,
+    loading,
+    error,
+    expandedNodes,
+    setCurrentPrefix,
+    setExpandedNodes,
+    refresh,
+    s3Service,
+  } = useS3Browser({ credentials, bucketName });
+
+  if (loading) {
+    return (
+      <div className="browser-page">
+        <div className="browser-layout">
+          <div className="loading">
+            <div className="spinner"></div>
+            <p>{BROWSER_PAGE_DEFAULTS.LOADING_MESSAGE}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="browser-page">
+        <div className="browser-layout">
+          <ErrorState 
+            title={ERROR_STATE_DEFAULTS.TITLE}
+            message={error}
+            icon={ERROR_STATE_DEFAULTS.ICON}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="browser-page">
+      <div className="browser-layout">
+        <div className="left-panel">
+          <TreeView
+            buckets={[bucketName]}
+            currentBucket={bucketName}
+            currentPrefix={currentPrefix}
+            objects={allObjects}
+            expandedNodes={expandedNodes}
+            onBucketSelect={() => {}}
+            onPrefixSelect={setCurrentPrefix}
+            onExpandedNodesChange={setExpandedNodes}
+          />
+        </div>
+        <div className="right-panel">
+          <FileView
+            currentPrefix={currentPrefix}
+            objects={objects}
+            s3Service={s3Service}
+            bucketName={bucketName}
+            onRefresh={refresh}
+            onPrefixSelect={setCurrentPrefix}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BrowserPage; 

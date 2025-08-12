@@ -1,0 +1,100 @@
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #2F3645;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #FFFFFF;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #A0A0A0;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #FFFFFF;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:disabled {
+  background-color: #3A4252;
+  color: #A0A0A0;
+  cursor: not-allowed;
+}
+
+.btn:not(:disabled):hover {
+  background-color: #5A6270;
+}
+
+.btn-secondary {
+  background-color: #4A5260;
+  color: #FFFFFF;
+}
+
+.btn-primary {
+  background-color: #4A90E2;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #357ABD;
+} 

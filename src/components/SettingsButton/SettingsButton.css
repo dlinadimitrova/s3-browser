@@ -1,0 +1,20 @@
+/* Settings Button Styles */
+.settings-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #2F3645;
+  border: 1px solid #4A5260;
+  color: #FFFFFF;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  z-index: 1000;
+}
+
+.settings-button:hover {
+  background-color: #3A4252;
+  color: #FFFFFF;
+} 

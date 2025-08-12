@@ -1,0 +1,78 @@
+/* AuthForm Styles */
+.auth-panel {
+  background-color: #2F3645;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.auth-form-group {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+}
+
+.form-label {
+  color: #FFFFFF;
+  font-weight: 500;
+  min-width: 120px;
+}
+
+.form-input,
+.form-select {
+  flex: 1;
+  padding: 8px 12px;
+  background-color: #22262F;
+  border: 1px solid #4A5260;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #4A90E2;
+}
+
+.form-input::placeholder,
+.form-select::placeholder {
+  color: #A0A0A0;
+}
+
+.submit-btn {
+  align-self: flex-end;
+  padding: 8px 16px;
+  background-color: #4A90E2;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #357ABD;
+}
+
+.submit-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+} 

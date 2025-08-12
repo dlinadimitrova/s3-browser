@@ -1,0 +1,40 @@
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:disabled {
+  background-color: #3A4252;
+  color: #A0A0A0;
+  cursor: not-allowed;
+}
+
+.btn:not(:disabled):hover {
+  background-color: #5A6270;
+}
+
+.btn-secondary {
+  background-color: #4A5260;
+  color: #FFFFFF;
+}
+
+.btn-primary {
+  background-color: #4A90E2;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #357ABD;
+} 
