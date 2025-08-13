@@ -55,10 +55,9 @@
 }
 
 .tree-arrow-placeholder {
-  font-size: 12px;
   width: 16px;
-  text-align: center;
-  color: #6c757d;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .tree-icon {

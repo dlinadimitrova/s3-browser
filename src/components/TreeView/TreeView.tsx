@@ -70,6 +70,9 @@ const TreeView: React.FC<TreeViewProps> = ({
               {isExpanded ? <FiChevronDown /> : <FiChevronRight />}
             </span>
           )}
+          {!canExpand && (
+            <span className="tree-arrow-placeholder"></span>
+          )}
 
           <span className="tree-icon">
             <FiFolder />
