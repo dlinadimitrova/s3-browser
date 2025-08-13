@@ -1,4 +1,4 @@
-.modal-footer {
+.modalFooter {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
@@ -25,16 +25,16 @@
   background-color: #5A6270;
 }
 
-.btn-secondary {
+.btnSecondary {
   background-color: #4A5260;
   color: #FFFFFF;
 }
 
-.btn-primary {
+.btnPrimary {
   background-color: #4A90E2;
   color: #FFFFFF;
 }
 
-.btn-primary:hover {
+.btnPrimary:hover {
   background-color: #357ABD;
 } 

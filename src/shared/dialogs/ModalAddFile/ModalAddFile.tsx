@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { NameInput, ModalActionButtons } from '../../shared/components';
-import './ModalAddFile.css';
+import NameInput from '../../components/NameInput/NameInput';
+import ModalActionButtons from '../../components/ModalActionButtons/ModalActionButtons';
+import commonStyles from '../common.module.css';
 
 interface ModalAddFileProps {
   isOpen: boolean;
@@ -45,12 +46,12 @@ const ModalAddFile: React.FC<ModalAddFileProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal">
-        <div className="modal-header">
+    <div className={commonStyles.modalOverlay}>
+      <div className={commonStyles.modal}>
+        <div className={commonStyles.modalHeader}>
           <h2>Add new file</h2>
         </div>
-        <div className="modal-body">
+        <div className={commonStyles.modalBody}>
           <NameInput
             label="File name"
             placeholder="Enter file name"
@@ -58,14 +59,14 @@ const ModalAddFile: React.FC<ModalAddFileProps> = ({
             itemType="file"
             onNameChange={handleNameChange}
           />
-          <div className="form-group">
+          <div className={commonStyles.formGroup}>
             <label htmlFor="content">Content:</label>
             <textarea
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Enter file content"
-              className="form-textarea"
+              className={commonStyles.formTextarea}
               rows={8}
             />
           </div>

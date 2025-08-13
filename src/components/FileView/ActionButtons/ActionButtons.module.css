@@ -1,9 +1,9 @@
-.action-buttons {
+.actionButtons {
   display: flex;
   gap: 12px;
 }
 
-.action-btn {
+.actionBtn {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -17,11 +17,11 @@
   transition: background-color 0.2s;
 }
 
-.action-btn:hover {
+.actionBtn:hover {
   background-color: #5A6270;
 }
 
-.action-btn:disabled {
+.actionBtn:disabled {
   background-color: #3A4252;
   color: #A0A0A0;
   cursor: not-allowed;

@@ -1,4 +1,4 @@
-.loading-state {
+.loadingState {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,19 +12,19 @@
   gap: 8px;
 }
 
-.loading-content {
+.loadingContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 }
 
-.loading-icon {
+.loadingIcon {
   font-size: 24px;
   animation: pulse 2s infinite;
 }
 
-.loading-spinner {
+.loadingSpinner {
   width: 32px;
   height: 32px;
   border: 3px solid #3A4252;
@@ -33,7 +33,7 @@
   animation: spin 1s linear infinite;
 }
 
-.loading-message {
+.loadingMessage {
   margin: 0;
   font-size: 16px;
   color: #A0A0A0;

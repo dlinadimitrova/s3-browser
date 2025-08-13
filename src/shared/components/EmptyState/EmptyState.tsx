@@ -1,6 +1,6 @@
 import React from 'react';
 import type { IconType } from 'react-icons';
-import './EmptyState.css';
+import styles from './EmptyState.module.css';
 
 interface EmptyStateProps {
   title: string;
@@ -10,12 +10,12 @@ interface EmptyStateProps {
 
 const EmptyState: React.FC<EmptyStateProps> = ({ title, message, icon: Icon }) => {
   return (
-    <div className="empty-state">
-      <div className="empty-state-icon">
+    <div className={styles.emptyState}>
+      <div className={styles.emptyStateIcon}>
         <Icon />
       </div>
-      <h3 className="empty-state-title">{title}</h3>
-      <p className="empty-state-message">{message}</p>
+      <h3 className={styles.emptyStateTitle}>{title}</h3>
+      <p className={styles.emptyStateMessage}>{message}</p>
     </div>
   );
 };

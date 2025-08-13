@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { RESIZABLE_PANELS_DEFAULTS } from '../../shared/constants/constants';
-import './ResizablePanels.css';
+import styles from './ResizablePanels.module.css';
 
 interface ResizablePanelsProps {
   leftPanel: React.ReactNode;
@@ -57,20 +57,20 @@ const ResizablePanels: React.FC<ResizablePanelsProps> = ({
   }, [isDragging, handleMouseMove, handleMouseUp]);
 
   return (
-    <div ref={containerRef} className="resizable-panels">
+    <div ref={containerRef} className={styles.resizablePanels}>
       <div 
-        className="left-panel"
+        className={styles.leftPanel}
         style={{ width: `${leftWidth}px` }}
       >
         {leftPanel}
       </div>
       
       <div 
-        className={`resizer ${isDragging ? 'dragging' : ''}`}
+        className={`${styles.resizer} ${isDragging ? styles.dragging : ''}`}
         onMouseDown={handleMouseDown}
       />
       
-      <div className="right-panel">
+      <div className={styles.rightPanel}>
         {rightPanel}
       </div>
     </div>

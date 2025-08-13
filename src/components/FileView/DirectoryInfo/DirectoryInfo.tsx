@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { getBreadcrumbs } from '../../../shared/utils';
-import './DirectoryInfo.css';
+import styles from './DirectoryInfo.module.css';
 
 interface DirectoryInfoProps {
   currentPrefix: string;
@@ -25,22 +25,22 @@ const DirectoryInfo: React.FC<DirectoryInfoProps> = ({ currentPrefix, onPrefixSe
   };
   
   return (
-    <div className="directory-info">
-      <div className="directory-content">
-        <div className="directory-label">Current working directory:</div>
-        <div className="breadcrumb">
+    <div className={styles.directoryInfo}>
+      <div className={styles.directoryContent}>
+        <div className={styles.directoryLabel}>Current working directory:</div>
+        <div className={styles.breadcrumb}>
           <div 
-            className={`breadcrumb-item breadcrumb-clickable ${!currentPrefix ? 'breadcrumb-active' : ''}`}
+            className={`${styles.breadcrumbItem} ${styles.breadcrumbClickable} ${!currentPrefix ? styles.breadcrumbActive : ''}`}
             onClick={handleRootClick}
             title="Navigate to root directory"
           >
             Root
           </div>
           {breadcrumbs.flatMap((crumb, index) => [
-            <FiChevronRight key={`sep-${index}`} className="breadcrumb-separator" />,
+            <FiChevronRight key={`sep-${index}`} className={styles.breadcrumbSeparator} />,
             <div 
               key={`crumb-${index}`} 
-              className={`breadcrumb-item breadcrumb-clickable ${index === breadcrumbs.length - 1 ? 'breadcrumb-active' : ''}`}
+              className={`${styles.breadcrumbItem} ${styles.breadcrumbClickable} ${index === breadcrumbs.length - 1 ? styles.breadcrumbActive : ''}`}
               onClick={() => handleBreadcrumbClick(index)}
               title={`Navigate to ${crumb}`}
             >

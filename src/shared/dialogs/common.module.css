@@ -1,4 +1,4 @@
-.modal-overlay {
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -15,34 +15,28 @@
   background-color: #2F3645;
   border-radius: 10px;
   padding: 20px;
-  width: 600px;
+  width: 400px;
   max-width: 90vw;
-  max-height: 80vh;
   display: flex;
   flex-direction: column;
   gap: 16px;
   color: #FFFFFF;
 }
 
-.modal-header {
+.modalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-shrink: 0;
 }
 
-.modal-title {
+.modalTitle {
   font-size: 18px;
   font-weight: bold;
   color: #FFFFFF;
   margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 400px;
 }
 
-.modal-close {
+.modalClose {
   background: none;
   border: none;
   color: #A0A0A0;
@@ -51,45 +45,25 @@
   padding: 4px;
   border-radius: 4px;
   transition: color 0.2s;
-  flex-shrink: 0;
 }
 
-.modal-close:hover {
+.modalClose:hover {
   color: #FFFFFF;
 }
 
-.modal-content {
-  flex: 1;
-  min-height: 0;
+.modalBody {
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
-.content-textarea {
-  flex: 1;
-  min-height: 300px;
-  padding: 12px;
-  background-color: #22262F;
-  border: 1px solid #4A5260;
-  border-radius: 6px;
-  color: #FFFFFF;
-  font-size: 14px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  line-height: 1.5;
-  resize: none;
-  outline: none;
-  overflow-y: auto;
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.content-textarea:focus {
-  border-color: #4A90E2;
-}
-
-.content-textarea::placeholder {
-  color: #A0A0A0;
-}
-
-.modal-footer {
+.modalFooter {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
@@ -117,35 +91,93 @@
   background-color: #5A6270;
 }
 
-.btn-secondary {
+.btnSecondary {
   background-color: #4A5260;
   color: #FFFFFF;
 }
 
-.btn-primary {
+.btnPrimary {
   background-color: #4A90E2;
   color: #FFFFFF;
 }
 
-.btn-primary:hover {
+.btnPrimary:hover {
   background-color: #357ABD;
 }
 
-.content-textarea::-webkit-scrollbar {
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.formTextarea {
+  padding: 8px 12px;
+  background-color: #22262F;
+  border: 1px solid #4A5260;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  min-height: 120px;
+}
+
+.formTextarea::placeholder {
+  color: #A0A0A0;
+}
+
+.formTextarea:focus {
+  border-color: #4A90E2;
+}
+
+.contentTextarea {
+  flex: 1;
+  min-height: 300px;
+  padding: 12px;
+  background-color: #22262F;
+  border: 1px solid #4A5260;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  overflow-y: auto;
+}
+
+.contentTextarea:focus {
+  border-color: #4A90E2;
+}
+
+.contentTextarea::placeholder {
+  color: #A0A0A0;
+}
+
+.contentTextarea::-webkit-scrollbar {
   width: 8px;
 }
 
-.content-textarea::-webkit-scrollbar-track {
+.contentTextarea::-webkit-scrollbar-track {
   background: #22262F;
   border-radius: 4px;
 }
 
-.content-textarea::-webkit-scrollbar-thumb {
+.contentTextarea::-webkit-scrollbar-thumb {
   background: #4A5260;
   border-radius: 4px;
   transition: background-color 0.2s;
 }
 
-.content-textarea::-webkit-scrollbar-thumb:hover {
+.contentTextarea::-webkit-scrollbar-thumb:hover {
   background: #5A6270;
 } 

@@ -1,16 +1,16 @@
-.directory-info {
+.directoryInfo {
   display: flex;
   align-items: flex-start;
   color: #FFFFFF;
 }
 
-.directory-content {
+.directoryContent {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.directory-label {
+.directoryLabel {
   color: #FFFFFF;
   font-weight: 500;
   font-size: 16px;
@@ -27,37 +27,37 @@
   min-height: 24px;
 }
 
-.breadcrumb-item {
+.breadcrumbItem {
   color: #4A90E2;
   cursor: pointer;
   transition: color 0.2s;
 }
 
-.breadcrumb-clickable {
+.breadcrumbClickable {
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 2px 4px;
   border-radius: 4px;
 }
 
-.breadcrumb-clickable:hover {
+.breadcrumbClickable:hover {
   color: #357ABD;
   text-decoration: underline;
 }
 
-.breadcrumb-clickable:active {
+.breadcrumbClickable:active {
   transform: translateY(1px);
 }
 
-.breadcrumb-active {
+.breadcrumbActive {
   color: #FFFFFF !important;
 }
 
-.breadcrumb-active:hover {
+.breadcrumbActive:hover {
   background-color: rgba(74, 144, 226, 0.3) !important;
 }
 
-.breadcrumb-separator {
+.breadcrumbSeparator {
   color: #A0A0A0;
   font-size: 14px;
   margin: 0 4px;

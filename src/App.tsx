@@ -4,7 +4,7 @@ import BrowserPage from './pages/BrowserPage';
 import { EmptyState } from './shared/components';
 import { EMPTY_STATE_DEFAULTS, STORAGE_KEYS } from './shared/constants/constants';
 import type { AWSCredentials } from './shared/models/interfaces';
-import './App.css';
+import styles from './App.module.css';
 
 interface LoginState extends AWSCredentials {
   bucketName: string;
@@ -13,8 +13,6 @@ interface LoginState extends AWSCredentials {
 function App() {
   const [loginState, setLoginState] = useState<LoginState | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-
 
   useEffect(() => {
     const savedConfig = localStorage.getItem(STORAGE_KEYS.S3_CONFIG);
@@ -36,14 +34,11 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h2>AWS S3 Browser</h2>
-      
-      <div className="auth-panel">
-        <div className="auth-title">Authentication</div>
+    <div className={styles.app}>
+      <div className={styles.authPanel}>
+        <div className={styles.authTitle}>Authentication</div>
         <AuthForm onLogin={handleLogin} />
       </div>
-
       {!loginState && !isAuthenticated && (
         <EmptyState 
           title={EMPTY_STATE_DEFAULTS.TITLE}

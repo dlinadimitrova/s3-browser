@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
-import './ActionButtons.css';
+import styles from './ActionButtons.module.css';
 
 interface ActionButtonsProps {
   onCreateFolder: () => void;
@@ -48,11 +48,11 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   const buttonConfigs = createButtonConfigs(onCreateFolder, onCreateFile, onDelete);
 
   return (
-    <div className="action-buttons">
+    <div className={styles.actionButtons}>
       {buttonConfigs.map((button) => (
         <button 
           key={button.id}
-          className="action-btn"
+          className={styles.actionBtn}
           onClick={button.onClick}
         >
           {button.icon}

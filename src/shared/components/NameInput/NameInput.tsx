@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { validateName } from '../../utils/fileUtils';
-import './NameInput.css';
+import styles from './NameInput.module.css';
 
 interface NameInputProps {
   label: string;
@@ -31,7 +31,7 @@ const NameInput: React.FC<NameInputProps> = ({
   };
 
   return (
-    <div className="form-group">
+    <div className={styles.formGroup}>
       <label htmlFor="nameInput">{label}:</label>
       <input
         type="text"
@@ -39,9 +39,9 @@ const NameInput: React.FC<NameInputProps> = ({
         value={name}
         onChange={handleNameChange}
         placeholder={placeholder}
-        className={`form-input ${error ? 'form-input-error' : ''}`}
+        className={`${styles.formInput} ${error ? styles.formInputError : ''}`}
       />
-      {error && <div className="error-message">{error}</div>}
+      {error && <div className={styles.errorMessage}>{error}</div>}
     </div>
   );
 };

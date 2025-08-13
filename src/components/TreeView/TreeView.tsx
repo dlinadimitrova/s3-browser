@@ -3,7 +3,7 @@ import type { S3Object } from '../../shared/models/interfaces';
 import { useTreeData } from '../../hooks/useTreeData';
 import type { TreeNode } from '../../hooks/useTreeData';
 import { FiChevronDown, FiChevronRight, FiFolder } from 'react-icons/fi';
-import './TreeView.css';
+import styles from './TreeView.module.css';
 
 const TREE_INDENTATION = {
   BASE_PADDING: 12,
@@ -56,7 +56,7 @@ const TreeView: React.FC<TreeViewProps> = ({
     return (
       <div key={node.path}>
         <div 
-          className={`tree-item ${isActive ? 'active' : ''}`}
+          className={`${styles.treeItem} ${isActive ? styles.active : ''}`}
           style={{ paddingLeft: `${calculateTreePadding(level)}px` }}
           onClick={() => {
             if (canExpand) {
@@ -66,18 +66,18 @@ const TreeView: React.FC<TreeViewProps> = ({
           onDoubleClick={() => handleNodeDoubleClick(node.path)}
         >
           {canExpand && (
-            <div className="tree-arrow">
+            <div className={styles.treeArrow}>
               {isExpanded ? <FiChevronDown /> : <FiChevronRight />}
             </div>
           )}
           {!canExpand && (
-            <div className="tree-arrow-placeholder"></div>
+            <div className={styles.treeArrowPlaceholder}></div>
           )}
 
-          <div className="tree-icon">
+          <div className={styles.treeIcon}>
             <FiFolder />
           </div>
-          <div className="tree-label">{node.name}</div>
+          <div className={styles.treeLabel}>{node.name}</div>
         </div>
         {isExpanded && node.children.map(child => renderTreeNode(child, level + 1))}
       </div>
@@ -85,8 +85,8 @@ const TreeView: React.FC<TreeViewProps> = ({
   };
 
   return (
-    <div className="tree-view">
-      <div className="tree-content">
+    <div className={styles.treeView}>
+      <div className={styles.treeContent}>
         {renderTreeNode(treeData)}
       </div>
     </div>

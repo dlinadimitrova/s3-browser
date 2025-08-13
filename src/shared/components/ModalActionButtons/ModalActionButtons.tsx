@@ -1,5 +1,5 @@
 import React from 'react';
-import './ModalActionButtons.css';
+import styles from './ModalActionButtons.module.css';
 
 interface ModalActionButtonsProps {
   onClose: () => void;
@@ -17,12 +17,12 @@ const ModalActionButtons: React.FC<ModalActionButtonsProps> = ({
   createText = 'Create',
 }) => {
   return (
-    <div className="modal-footer">
-      <button className="btn" onClick={onClose}>
+    <div className={styles.modalFooter}>
+      <button className={styles.btn} onClick={onClose}>
         {closeText}
       </button>
       <button 
-        className="btn" 
+        className={styles.btn} 
         onClick={onCreate}
         disabled={isCreateDisabled}
       >

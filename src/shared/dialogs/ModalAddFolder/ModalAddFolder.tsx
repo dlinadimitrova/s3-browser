@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { NameInput, ModalActionButtons } from '../../shared/components';
-import './ModalAddFolder.css';
+import NameInput from '../../components/NameInput/NameInput';
+import ModalActionButtons from '../../components/ModalActionButtons/ModalActionButtons';
+import commonStyles from '../common.module.css';
 
 interface ModalAddFolderProps {
   isOpen: boolean;
@@ -42,12 +43,12 @@ const ModalAddFolder: React.FC<ModalAddFolderProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal">
-        <div className="modal-header">
+    <div className={commonStyles.modalOverlay}>
+      <div className={commonStyles.modal}>
+        <div className={commonStyles.modalHeader}>
           <h2>Add new folder</h2>
         </div>
-        <div className="modal-body">
+        <div className={commonStyles.modalBody}>
           <NameInput
             label="Folder name"
             placeholder="Enter folder name"

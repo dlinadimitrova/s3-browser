@@ -1,11 +1,13 @@
-.file-list {
+.fileList {
   flex: 1;
   padding: 0px 16px;
   overflow-y: auto;
   color: #FFFFFF;
+  scrollbar-width: thin;
+  scrollbar-color: #4A5260 #2F3645;
 }
 
-.file-table {
+.fileTable {
   width: 100%;
   border-collapse: collapse;
   color: #FFFFFF;
@@ -14,11 +16,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.file-table thead {
+.fileTable thead {
   border-bottom: 1px solid #4A5260;
 }
 
-.file-table th {
+.fileTable th {
   padding: 12px;
   text-align: left;
   font-weight: 500;
@@ -27,50 +29,49 @@
   border-bottom: 2px solid #dee2e6;
 }
 
-.file-table td {
+.fileTable td {
   padding: 12px;
   border-bottom: 1px solid #3A4252;
 }
 
-
-.file-row {
+.fileRow {
   width: 100%;
   transition: background-color 0.2s;
   cursor: pointer;
 }
 
-.file-row:hover {
+.fileRow:hover {
   background-color: #3A4252;
 }
 
-.file-row.directory {
+.fileRow.directory {
   font-weight: 500;
 }
 
-.file-name {
+.fileName {
   display: flex;
   align-items: center;
   gap: 8px;
   color: #FFFFFF;
 }
 
-.file-icon {
+.fileIcon {
   font-size: 16px;
 }
 
-.file-size,
-.file-date {
+.fileSize,
+.fileDate {
   color: #A0A0A0;
   font-size: 14px;
 }
 
-.file-actions {
+.fileActions {
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
-.open-btn {
+.openBtn {
   background: none;
   border: none;
   color: #4A90E2;
@@ -81,12 +82,12 @@
   transition: background-color 0.2s;
 }
 
-.open-btn:hover {
+.openBtn:hover {
   color: #A0A0A0;
   text-decoration: underline;
 }
 
-.delete-btn {
+.deleteBtn {
   background: none;
   border: none;
   color: #A0A0A0;
@@ -97,30 +98,25 @@
   transition: color 0.2s;
 }
 
-.delete-btn:hover {
+.deleteBtn:hover {
   color: #DC3545;
 }
 
-.file-list::-webkit-scrollbar {
+.fileList::-webkit-scrollbar {
   width: 12px;
 }
 
-.file-list::-webkit-scrollbar-track {
+.fileList::-webkit-scrollbar-track {
   background: #2F3645;
   border-radius: 4px;
 }
 
-.file-list::-webkit-scrollbar-thumb {
+.fileList::-webkit-scrollbar-thumb {
   background: #4A5260;
   border-radius: 4px;
   transition: background-color 0.2s;
 }
 
-.file-list::-webkit-scrollbar-thumb:hover {
+.fileList::-webkit-scrollbar-thumb:hover {
   background: #5A6270;
-}
-
-.file-list {
-  scrollbar-width: thin;
-  scrollbar-color: #4A5260 #2F3645;
 }

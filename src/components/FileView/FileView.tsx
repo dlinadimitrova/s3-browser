@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import type { S3Object, S3Service } from '../../shared/models/interfaces';
-import { ModalAddFile, ModalAddFolder, ModalShowContent } from '../../dialogs';
+import { ModalAddFile, ModalAddFolder, ModalShowContent } from '../../shared/dialogs';
 import { EmptyState, LoadingState } from '../../shared/components';
 import { BROWSER_PAGE_DEFAULTS, LOADING_STATE_DEFAULTS } from '../../shared/constants/constants';
 import { isDirectory, getParentPrefix, getFileName } from '../../shared/utils/fileUtils';
 import ActionButtons from './ActionButtons/ActionButtons';
 import DirectoryInfo from './DirectoryInfo/DirectoryInfo';
 import FileList from './FileList/FileList';
-import './FileView.css';
+import styles from './FileView.module.css';
 
 interface FileViewProps {
   currentPrefix: string;
@@ -123,8 +123,8 @@ const FileView: React.FC<FileViewProps> = ({
   };
 
   return (
-    <div className="file-view">
-      <div className="working-directory">
+    <div className={styles.fileView}>
+      <div className={styles.workingDirectory}>
         <DirectoryInfo 
           currentPrefix={currentPrefix} 
           onPrefixSelect={onPrefixSelect}

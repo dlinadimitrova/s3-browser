@@ -1,9 +1,4 @@
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-
 .app {
   display: flex;
   flex-direction: column;
@@ -17,24 +12,18 @@
   overflow: hidden;
 }
 
-.browser-page {
-  display: flex;
-  overflow-y: auto;
-  flex: 1;
-  flex-direction: column;
-  width: 100%;
-  gap: 20px;
+.authPanel {
+  background-color: #2F3645;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
 }
 
-
-
-
-
-.browser-header {
+.authTitle {
+  font-size: 24px;
+  font-weight: bold;
   color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 

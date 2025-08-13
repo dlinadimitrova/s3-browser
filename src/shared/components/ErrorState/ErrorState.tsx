@@ -1,6 +1,6 @@
 import React from 'react';
 import type { IconType } from 'react-icons';
-import './ErrorState.css';
+import styles from './ErrorState.module.css';
 
 interface ErrorStateProps {
   title: string;
@@ -16,16 +16,16 @@ const ErrorState: React.FC<ErrorStateProps> = ({
   icon: Icon
 }) => {
   return (
-    <div className="error-state">
-      <div className="error-state-icon">
+    <div className={styles.errorState}>
+      <div className={styles.errorStateIcon}>
         <Icon />
       </div>
-      <h3 className="error-state-title">{title}</h3>
-      <p className="error-state-message">{message}</p>
+      <h3 className={styles.errorStateTitle}>{title}</h3>
+      <p className={styles.errorStateMessage}>{message}</p>
       {error && (
-        <details className="error-state-details">
-          <summary className="error-state-summary">Error Details</summary>
-          <pre className="error-state-error">{error}</pre>
+        <details className={styles.errorStateDetails}>
+          <summary className={styles.errorStateSummary}>Error Details</summary>
+          <pre className={styles.errorStateError}>{error}</pre>
         </details>
       )}
     </div>

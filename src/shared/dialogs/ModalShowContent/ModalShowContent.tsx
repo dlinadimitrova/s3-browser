@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiX } from 'react-icons/fi';
-import './ModalShowContent.css';
+import commonStyles from '../common.module.css';
 
 interface ModalShowContentProps {
   isOpen: boolean;
@@ -18,26 +18,26 @@ const ModalShowContent: React.FC<ModalShowContentProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2 className="modal-title">{title}</h2>
-          <button className="modal-close" onClick={onClose}>
+    <div className={commonStyles.modalOverlay} onClick={onClose}>
+      <div className={commonStyles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className={commonStyles.modalHeader}>
+          <h2 className={commonStyles.modalTitle}>{title}</h2>
+          <button className={commonStyles.modalClose} onClick={onClose}>
             <FiX />
           </button>
         </div>
         
-        <div className="modal-content">
+        <div className={commonStyles.modalContent}>
           <textarea
-            className="content-textarea"
+            className={commonStyles.contentTextarea}
             value={content}
             readOnly
             placeholder="No content to display"
           />
         </div>
         
-        <div className="modal-footer">
-          <button className="btn btn-secondary" onClick={onClose}>
+        <div className={commonStyles.modalFooter}>
+          <button className={`${commonStyles.btn} ${commonStyles.btnSecondary}`} onClick={onClose}>
             Close
           </button>
         </div>

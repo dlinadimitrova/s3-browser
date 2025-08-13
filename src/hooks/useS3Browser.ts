@@ -35,6 +35,14 @@ export const useS3Browser = ({ credentials, bucketName }: UseS3BrowserProps): Us
   const s3Service = useMemo(() => new S3Service(credentials), [credentials]);
   const isInitializedRef = useRef(false);
 
+  // Reset initialization when credentials change
+  useEffect(() => {
+    isInitializedRef.current = false;
+    setAllObjects([]);
+    setObjects([]);
+    setError(null);
+  }, [credentials.accessKeyId, credentials.secretAccessKey, credentials.region, bucketName]);
+
   // Cross-tab synchronization functions
   const saveObjectsToStorage = useCallback((objects: S3Object[]) => {
     try {
@@ -81,14 +89,17 @@ export const useS3Browser = ({ credentials, bucketName }: UseS3BrowserProps): Us
   // Fetch all objects once for the entire tree
   const fetchAllObjects = useCallback(async () => {
     try {
+      console.log('Fetching all objects for bucket:', bucketName);
       setLoading(true);
       setError(null);
       const allObjectList = await s3Service.listAllObjects(bucketName, '');
+      console.log('Fetched objects:', allObjectList.length);
       setAllObjects(allObjectList);
       
       // Save to localStorage for cross-tab synchronization
       saveObjectsToStorage(allObjectList);
     } catch (err) {
+      console.error('Error fetching objects:', err);
       setError(BROWSER_PAGE_DEFAULTS.ERROR_MESSAGE_PREFIX + (err as Error).message);
     } finally {
       setLoading(false);
@@ -177,7 +188,8 @@ export const useS3Browser = ({ credentials, bucketName }: UseS3BrowserProps): Us
 
   // Initialize with cached data if available
   useEffect(() => {
-    if (!isInitializedRef.current) {
+    if (!isInitializedRef.current && credentials.accessKeyId && credentials.secretAccessKey && bucketName) {
+      console.log('Initializing S3 browser with credentials:', { bucketName, accessKeyId: credentials.accessKeyId });
       const cachedObjects = loadObjectsFromStorage();
       if (cachedObjects) {
         setAllObjects(cachedObjects);
@@ -185,7 +197,7 @@ export const useS3Browser = ({ credentials, bucketName }: UseS3BrowserProps): Us
       }
       fetchAllObjects();
     }
-  }, [loadObjectsFromStorage, fetchAllObjects]);
+  }, [loadObjectsFromStorage, fetchAllObjects, credentials.accessKeyId, credentials.secretAccessKey, bucketName]);
 
   const refresh = useCallback(async () => {
     await fetchAllObjects();

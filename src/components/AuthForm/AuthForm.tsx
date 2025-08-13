@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { AUTH_FORM_DEFAULTS } from '../../shared/constants/constants';
-import './AuthForm.css';
+import { AUTH_FORM_DEFAULTS, STORAGE_KEYS } from '../../shared/constants/constants';
+import styles from './AuthForm.module.css';
 
 interface AuthFormProps {
   onLogin: (credentials: { accessKeyId: string; secretAccessKey: string; region: string; bucketName: string }) => void;
@@ -60,7 +60,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onLogin }) => {
   const [bucketName, setBucketName] = useState('');
 
   useEffect(() => {
-    const savedConfig = localStorage.getItem('s3Config');
+    const savedConfig = localStorage.getItem(STORAGE_KEYS.S3_CONFIG);
     if (savedConfig) {
       try {
         const config = JSON.parse(savedConfig);
@@ -75,6 +75,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onLogin }) => {
   }, []);
 
   const handleSubmit = () => {
+    console.log('Connect button clicked with credentials:', { bucketName, region, accessKeyId: accessKeyId ? '***' : 'empty' });
     onLogin({ accessKeyId, secretAccessKey, region, bucketName });
   };
 
@@ -90,7 +91,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onLogin }) => {
   const renderInput = (config: InputConfig) => (
     <input
       type={config.type}
-      className="form-input"
+      className={styles.formInput}
       placeholder={config.placeholder}
       id={config.id}
       value={config.value}
@@ -100,17 +101,17 @@ const AuthForm: React.FC<AuthFormProps> = ({ onLogin }) => {
   );
 
   return (
-    <div className="auth-form">
+    <div className={styles.authForm}>
       {inputConfigs.map((config) => (
-        <div key={config.id} className="auth-form-group">
-          <div className="form-label">{config.label}</div>
+        <div key={config.id} className={styles.authFormGroup}>
+          <div className={styles.formLabel}>{config.label}</div>
           {renderInput(config)}
         </div>
       ))}
-      <div className="auth-form-group">
-        <div className="form-label">{AUTH_FORM_DEFAULTS.LABELS.REGION}</div>
+      <div className={styles.authFormGroup}>
+        <div className={styles.formLabel}>{AUTH_FORM_DEFAULTS.LABELS.REGION}</div>
         <select
-          className="form-input"
+          className={styles.formSelect}
           id={AUTH_FORM_DEFAULTS.IDS.REGION}
           value={region}
           onChange={(e) => setRegion(e.target.value)}
@@ -123,7 +124,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onLogin }) => {
         </select>
       </div>
       <button 
-        className="submit-btn" 
+        className={styles.submitBtn} 
         type="button" 
         onClick={handleSubmit}
       >

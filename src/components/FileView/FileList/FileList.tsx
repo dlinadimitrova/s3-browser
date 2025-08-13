@@ -2,7 +2,7 @@ import React from 'react';
 import type { S3Object } from '../../../shared/models/interfaces';
 import { formatFileSize, getFileName, getFolderName } from '../../../shared/utils';
 import { FiFolder, FiFile, FiTrash2 } from 'react-icons/fi';
-import './FileList.css';
+import styles from './FileList.module.css';
 
 interface FileListProps {
   objects: S3Object[];
@@ -31,8 +31,8 @@ const FileList: React.FC<FileListProps> = ({ objects, onObjectClick, onDelete })
   };
 
   return (
-    <div className="file-list">
-      <table className="file-table">
+    <div className={styles.fileList}>
+      <table className={styles.fileTable}>
         <thead>
           <tr>
             <th>Name</th>
@@ -44,26 +44,26 @@ const FileList: React.FC<FileListProps> = ({ objects, onObjectClick, onDelete })
           {objects.map((object) => (
             <tr
               key={object.key}
-              className={`file-row ${object.isDirectory ? 'directory' : 'file'}`}
+              className={`${styles.fileRow} ${object.isDirectory ? styles.directory : styles.file}`}
               onClick={() => handleObjectClick(object)}
             >
-              <td className="file-name">
-                <span className="file-icon">
+              <td className={styles.fileName}>
+                <span className={styles.fileIcon}>
                   {object.isDirectory ? <FiFolder /> : <FiFile />}
                 </span>
                 {object.isDirectory ? getFolderName(object.key) : getFileName(object.key)}
               </td>
-              <td className="file-size">{formatFileSize(object.size)}</td>
-              <td className="file-actions">
+              <td className={styles.fileSize}>{formatFileSize(object.size)}</td>
+              <td className={styles.fileActions}>
                 <button
-                  className="open-btn"
+                  className={styles.openBtn}
                   onClick={(e) => handleOpen(e, object)}
                   title="Open"
                 >
                   Open
                 </button>
                 <button
-                  className="delete-btn"
+                  className={styles.deleteBtn}
                   onClick={(e) => handleDelete(e, object)}
                   title={`Delete ${object.isDirectory ? 'directory' : 'file'}`}
                 >
