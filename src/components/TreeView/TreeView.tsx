@@ -66,18 +66,18 @@ const TreeView: React.FC<TreeViewProps> = ({
           onDoubleClick={() => handleNodeDoubleClick(node.path)}
         >
           {canExpand && (
-            <span className="tree-arrow">
+            <div className="tree-arrow">
               {isExpanded ? <FiChevronDown /> : <FiChevronRight />}
-            </span>
+            </div>
           )}
           {!canExpand && (
-            <span className="tree-arrow-placeholder"></span>
+            <div className="tree-arrow-placeholder"></div>
           )}
 
-          <span className="tree-icon">
+          <div className="tree-icon">
             <FiFolder />
-          </span>
-          <span className="tree-label">{node.name}</span>
+          </div>
+          <div className="tree-label">{node.name}</div>
         </div>
         {isExpanded && node.children.map(child => renderTreeNode(child, level + 1))}
       </div>

@@ -80,4 +80,12 @@ export const AUTH_FORM_DEFAULTS: AuthFormDefaults = {
     { value: 'sa-east-1', label: 'South America (São Paulo)' },
   ],
   DEFAULT_REGION: 'us-east-1',
+} as const;
+
+// ResizablePanels Constants
+export const RESIZABLE_PANELS_DEFAULTS = {
+  INITIAL_LEFT_WIDTH: 300,
+  MIN_LEFT_WIDTH: 200,
+  MAX_LEFT_WIDTH: 500,
+  RESIZER_WIDTH: 4,
 } as const; 

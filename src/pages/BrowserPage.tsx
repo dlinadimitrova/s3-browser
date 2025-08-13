@@ -1,6 +1,7 @@
 import React from 'react';
 import TreeView from '../components/TreeView/TreeView';
 import FileView from '../components/FileView/FileView';
+import ResizablePanels from '../components/ResizablePanels/ResizablePanels';
 import { ErrorState } from '../shared/components';
 import { ERROR_STATE_DEFAULTS } from '../shared/constants/constants';
 import type { AWSCredentials } from '../shared/models/interfaces';
@@ -43,8 +44,8 @@ const BrowserPage: React.FC<BrowserPageProps> = ({ credentials, bucketName }) =>
 
   return (
     <div className="browser-page">
-      <div className="browser-layout">
-        <div className="left-panel">
+      <ResizablePanels
+        leftPanel={
           <TreeView
             buckets={[bucketName]}
             currentBucket={bucketName}
@@ -55,8 +56,8 @@ const BrowserPage: React.FC<BrowserPageProps> = ({ credentials, bucketName }) =>
             onPrefixSelect={setCurrentPrefix}
             onExpandedNodesChange={setExpandedNodes}
           />
-        </div>
-        <div className="right-panel">
+        }
+        rightPanel={
           <FileView
             currentPrefix={currentPrefix}
             objects={objects}
@@ -66,8 +67,11 @@ const BrowserPage: React.FC<BrowserPageProps> = ({ credentials, bucketName }) =>
             onPrefixSelect={setCurrentPrefix}
             loading={loading}
           />
-        </div>
-      </div>
+        }
+        initialLeftWidth={300}
+        minLeftWidth={200}
+        maxLeftWidth={500}
+      />
     </div>
   );
 };

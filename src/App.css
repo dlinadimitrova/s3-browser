@@ -26,29 +26,7 @@
   gap: 20px;
 }
 
-.browser-layout {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  gap: 20px;
-}
 
-.left-panel {
-  flex: 0 0 300px;
-  background-color: #2F3645;
-  border-radius: 10px;
-  padding: 2px;
-  min-width: 250px;
-  max-width: 400px;
-}
-
-.right-panel {
-  flex: 2;
-  background-color: #2F3645;
-  border-radius: 10px;
-  padding: 8px;
-  overflow-y: auto;
-}
 
 
 

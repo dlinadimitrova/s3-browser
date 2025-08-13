@@ -1,0 +1,38 @@
+.resizable-panels {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.left-panel {
+  background-color: #2F3645;
+  border-radius: 10px 0 0 10px;
+  padding: 2px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+}
+
+.right-panel {
+  flex: 1;
+  background-color: #2F3645;
+  border-radius: 0 10px 10px 0;
+  padding: 8px;
+  overflow-y: auto;
+}
+
+.resizer {
+  width: 4px; /* Matches RESIZABLE_PANELS_DEFAULTS.RESIZER_WIDTH */
+  background-color: #4A5260;
+  cursor: col-resize;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+.resizer:hover {
+  background-color: #5A6270;
+}
+
+.resizer.dragging {
+  background-color: #74A4E2;
+} 
