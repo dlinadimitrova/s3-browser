@@ -17,6 +17,13 @@ export const getFileName = (key: string): string => {
   return key.split('/').pop() || key;
 };
 
+// Get folder name from S3 key (removes trailing slash and gets last part)
+export const getFolderName = (key: string): string => {
+  // Remove trailing slash if present
+  const cleanKey = key.replace(/\/$/, '');
+  return cleanKey.split('/').pop() || cleanKey;
+};
+
 // Get breadcrumbs from prefix
 export const getBreadcrumbs = (prefix: string): string[] => {
   if (!prefix) return [];

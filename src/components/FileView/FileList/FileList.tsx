@@ -1,6 +1,7 @@
 import React from 'react';
 import type { S3Object } from '../../../shared/models/interfaces';
-import { formatFileSize, getFileName } from '../../../shared/utils';
+import { formatFileSize, getFileName, getFolderName } from '../../../shared/utils';
+import { FiFolder, FiFile, FiTrash2 } from 'react-icons/fi';
 import './FileList.css';
 
 interface FileListProps {
@@ -17,7 +18,7 @@ const FileList: React.FC<FileListProps> = ({ objects, onObjectClick, onDelete })
   const handleDelete = (e: React.MouseEvent, object: S3Object) => {
     e.stopPropagation();
     const itemType = object.isDirectory ? 'directory' : 'file';
-    const itemName = getFileName(object.key);
+    const itemName = object.isDirectory ? getFolderName(object.key) : getFileName(object.key);
     
     if (window.confirm(`Are you sure you want to delete the ${itemType} "${itemName}"?`)) {
       onDelete(object);
@@ -48,9 +49,9 @@ const FileList: React.FC<FileListProps> = ({ objects, onObjectClick, onDelete })
             >
               <td className="file-name">
                 <span className="file-icon">
-                  {object.isDirectory ? '📁' : '📄'}
+                  {object.isDirectory ? <FiFolder /> : <FiFile />}
                 </span>
-                {getFileName(object.key)}
+                {object.isDirectory ? getFolderName(object.key) : getFileName(object.key)}
               </td>
               <td className="file-size">{formatFileSize(object.size)}</td>
               <td className="file-actions">
@@ -66,7 +67,7 @@ const FileList: React.FC<FileListProps> = ({ objects, onObjectClick, onDelete })
                   onClick={(e) => handleDelete(e, object)}
                   title={`Delete ${object.isDirectory ? 'directory' : 'file'}`}
                 >
-                  🗑️
+                  <FiTrash2 />
                 </button>
               </td>
             </tr>

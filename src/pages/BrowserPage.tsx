@@ -2,7 +2,7 @@ import React from 'react';
 import TreeView from '../components/TreeView/TreeView';
 import FileView from '../components/FileView/FileView';
 import { ErrorState } from '../shared/components';
-import { ERROR_STATE_DEFAULTS, BROWSER_PAGE_DEFAULTS } from '../shared/constants/constants';
+import { ERROR_STATE_DEFAULTS } from '../shared/constants/constants';
 import type { AWSCredentials } from '../shared/models/interfaces';
 import { useS3Browser } from '../hooks/useS3Browser';
 
@@ -25,18 +25,7 @@ const BrowserPage: React.FC<BrowserPageProps> = ({ credentials, bucketName }) =>
     s3Service,
   } = useS3Browser({ credentials, bucketName });
 
-  if (loading) {
-    return (
-      <div className="browser-page">
-        <div className="browser-layout">
-          <div className="loading">
-            <div className="spinner"></div>
-            <p>{BROWSER_PAGE_DEFAULTS.LOADING_MESSAGE}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+
 
   if (error) {
     return (
@@ -75,6 +64,7 @@ const BrowserPage: React.FC<BrowserPageProps> = ({ credentials, bucketName }) =>
             bucketName={bucketName}
             onRefresh={refresh}
             onPrefixSelect={setCurrentPrefix}
+            loading={loading}
           />
         </div>
       </div>

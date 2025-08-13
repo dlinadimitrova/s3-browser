@@ -1,7 +1,7 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { S3Service } from '../services/s3';
 import type { S3Object, AWSCredentials } from '../shared/models/interfaces';
-import { BROWSER_PAGE_DEFAULTS } from '../shared/constants/constants';
+import { BROWSER_PAGE_DEFAULTS, STORAGE_KEYS } from '../shared/constants/constants';
 
 interface UseS3BrowserProps {
   credentials: AWSCredentials;
@@ -33,6 +33,50 @@ export const useS3Browser = ({ credentials, bucketName }: UseS3BrowserProps): Us
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
 
   const s3Service = useMemo(() => new S3Service(credentials), [credentials]);
+  const isInitializedRef = useRef(false);
+
+  // Cross-tab synchronization functions
+  const saveObjectsToStorage = useCallback((objects: S3Object[]) => {
+    try {
+      const storageData = {
+        objects,
+        bucketName,
+        timestamp: Date.now(),
+      };
+      localStorage.setItem(STORAGE_KEYS.S3_OBJECTS, JSON.stringify(storageData));
+      localStorage.setItem(STORAGE_KEYS.S3_OBJECTS_TIMESTAMP, Date.now().toString());
+    } catch {
+      // Silently fail if localStorage is not available
+    }
+  }, [bucketName]);
+
+  const loadObjectsFromStorage = useCallback(() => {
+    try {
+      const storedData = localStorage.getItem(STORAGE_KEYS.S3_OBJECTS);
+      const timestamp = localStorage.getItem(STORAGE_KEYS.S3_OBJECTS_TIMESTAMP);
+      
+      if (storedData && timestamp) {
+        const data = JSON.parse(storedData);
+        const age = Date.now() - parseInt(timestamp);
+        
+        // Only use cached data if it's less than 5 minutes old and for the same bucket
+        if (age < 5 * 60 * 1000 && data.bucketName === bucketName) {
+          return data.objects;
+        }
+      }
+    } catch {
+      // Silently fail if localStorage is not available or data is corrupted
+    }
+    return null;
+  }, [bucketName]);
+
+  const triggerCrossTabRefresh = useCallback(() => {
+    try {
+      localStorage.setItem(STORAGE_KEYS.S3_REFRESH_TRIGGER, Date.now().toString());
+    } catch {
+      // Silently fail if localStorage is not available
+    }
+  }, []);
 
   // Fetch all objects once for the entire tree
   const fetchAllObjects = useCallback(async () => {
@@ -41,12 +85,15 @@ export const useS3Browser = ({ credentials, bucketName }: UseS3BrowserProps): Us
       setError(null);
       const allObjectList = await s3Service.listAllObjects(bucketName, '');
       setAllObjects(allObjectList);
+      
+      // Save to localStorage for cross-tab synchronization
+      saveObjectsToStorage(allObjectList);
     } catch (err) {
       setError(BROWSER_PAGE_DEFAULTS.ERROR_MESSAGE_PREFIX + (err as Error).message);
     } finally {
       setLoading(false);
     }
-  }, [s3Service, bucketName]);
+  }, [s3Service, bucketName, saveObjectsToStorage]);
 
   // Filter objects for current directory
   const filterObjectsForCurrentPrefix = useCallback((prefix: string) => {
@@ -54,7 +101,7 @@ export const useS3Browser = ({ credentials, bucketName }: UseS3BrowserProps): Us
     const seenDirectories = new Set<string>();
     const seenFiles = new Set<string>();
 
-    allObjects.forEach(obj => {
+    allObjects.forEach((obj: S3Object) => {
       if (obj.key.startsWith(prefix)) {
         const relativePath = obj.key.slice(prefix.length);
         const parts = relativePath.split('/').filter(Boolean);
@@ -101,20 +148,50 @@ export const useS3Browser = ({ credentials, bucketName }: UseS3BrowserProps): Us
 
   // Update objects when currentPrefix changes
   useEffect(() => {
-    if (allObjects.length > 0) {
-      const filteredObjects = filterObjectsForCurrentPrefix(currentPrefix);
-      setObjects(filteredObjects);
-    }
-  }, [currentPrefix, filterObjectsForCurrentPrefix, allObjects.length]);
+    const filteredObjects = filterObjectsForCurrentPrefix(currentPrefix);
+    setObjects(filteredObjects);
+  }, [currentPrefix, filterObjectsForCurrentPrefix, allObjects]);
 
-  // Fetch all objects on mount
+  // Cross-tab storage event listener
   useEffect(() => {
-    fetchAllObjects();
-  }, [fetchAllObjects]);
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key === STORAGE_KEYS.S3_REFRESH_TRIGGER && event.newValue) {
+        // Another tab triggered a refresh
+        fetchAllObjects();
+      } else if (event.key === STORAGE_KEYS.S3_OBJECTS && event.newValue) {
+        // Another tab updated the objects
+        try {
+          const data = JSON.parse(event.newValue);
+          if (data.bucketName === bucketName) {
+            setAllObjects(data.objects);
+          }
+        } catch {
+          // Ignore invalid data
+        }
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [fetchAllObjects, bucketName]);
+
+  // Initialize with cached data if available
+  useEffect(() => {
+    if (!isInitializedRef.current) {
+      const cachedObjects = loadObjectsFromStorage();
+      if (cachedObjects) {
+        setAllObjects(cachedObjects);
+        isInitializedRef.current = true;
+      }
+      fetchAllObjects();
+    }
+  }, [loadObjectsFromStorage, fetchAllObjects]);
 
   const refresh = useCallback(async () => {
     await fetchAllObjects();
-  }, [fetchAllObjects]);
+    // Trigger refresh in other tabs
+    triggerCrossTabRefresh();
+  }, [fetchAllObjects, triggerCrossTabRefresh]);
 
   return {
     // State

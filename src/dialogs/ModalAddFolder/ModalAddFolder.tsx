@@ -37,7 +37,6 @@ const ModalAddFolder: React.FC<ModalAddFolderProps> = ({
     onClose();
   };
 
-  // Check if form is valid
   const isFormValid = folderName.trim().length > 0 && isNameValid;
 
   if (!isOpen) return null;

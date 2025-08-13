@@ -1,4 +1,4 @@
-import { S3Client, ListObjectsV2Command, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, ListObjectsV2Command, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
 import type { AWSCredentials } from '../shared/models/interfaces';
 import { isDirectory } from '../shared/utils/fileUtils';
 
@@ -119,6 +119,29 @@ export class S3Service {
       await this.client.send(command);
     } catch {
       throw new Error('Failed to create folder');
+    }
+  }
+
+  async getObjectContent(bucket: string, key: string): Promise<string> {
+    try {
+      const command = new GetObjectCommand({
+        Bucket: bucket,
+        Key: key,
+      });
+
+      const response = await this.client.send(command);
+      
+      if (!response.Body) {
+        return '';
+      }
+
+      // Convert the readable stream to string
+      const streamReader = response.Body.transformToString();
+      const content = await streamReader;
+      
+      return content;
+    } catch {
+      throw new Error('Failed to get object content');
     }
   }
 } 

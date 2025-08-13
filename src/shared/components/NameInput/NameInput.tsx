@@ -24,11 +24,9 @@ const NameInput: React.FC<NameInputProps> = ({
     const newName = e.target.value;
     setName(newName);
     
-    // Validate on every change
     const validationError = validateName(newName, existingNames, itemType);
     setError(validationError);
     
-    // Notify parent component
     onNameChange(newName, !validationError);
   };
 

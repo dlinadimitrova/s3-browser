@@ -2,6 +2,7 @@ import React from 'react';
 import type { S3Object } from '../../shared/models/interfaces';
 import { useTreeData } from '../../hooks/useTreeData';
 import type { TreeNode } from '../../hooks/useTreeData';
+import { FiChevronDown, FiChevronRight, FiCircle, FiFolder } from 'react-icons/fi';
 import './TreeView.css';
 
 interface TreeViewProps {
@@ -58,13 +59,17 @@ const TreeView: React.FC<TreeViewProps> = ({
         >
           {canExpand && (
             <span className={`tree-arrow ${isExpanded ? 'expanded' : ''}`}>
-              {isExpanded ? '▼' : '▶'}
+              {isExpanded ? <FiChevronDown /> : <FiChevronRight />}
             </span>
           )}
           {!canExpand && hasChildren && (
-            <span className="tree-arrow-placeholder">•</span>
+            <span className="tree-arrow-placeholder">
+              <FiCircle />
+            </span>
           )}
-          <span className="tree-icon">📁</span>
+          <span className="tree-icon">
+            <FiFolder />
+          </span>
           <span className="tree-label">{node.name}</span>
         </div>
         {isExpanded && node.children.map(child => renderTreeNode(child, level + 1))}
@@ -74,7 +79,6 @@ const TreeView: React.FC<TreeViewProps> = ({
 
   return (
     <div className="tree-view">
-      <div className="tree-header">Folders</div>
       <div className="tree-content">
         {renderTreeNode(treeData)}
       </div>

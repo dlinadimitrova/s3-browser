@@ -1,8 +1,6 @@
-/* ActionButtons Styles */
 .action-buttons {
   display: flex;
   gap: 12px;
-  margin-bottom: 20px;
 }
 
 .action-btn {

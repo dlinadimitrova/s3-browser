@@ -1,5 +1,4 @@
 
-/* GLOBAL reset */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -9,28 +8,20 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 100vw;             /* use 100% instead of 100vw */
+  width: 100vw;
   background-color: #1A1A1A;
   color: #FFFFFF;
   padding: 12px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   position: relative;
-  overflow: hidden;        /* prevent child overflow */
-}
-
-.loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-  color: #A0A0A0;
-  font-size: 16px;
+  overflow: hidden;
 }
 
 .browser-page {
   display: flex;
+  overflow-y: auto;
+  flex: 1;
   flex-direction: column;
-  height: 100%;
   width: 100%;
   gap: 20px;
 }
@@ -58,41 +49,8 @@
   overflow-y: auto;
 }
 
-/* Directory Tree */
-.tree-container {
-  color: #A0A0A0;
-}
 
-.tree-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  margin: 2px 0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
 
-.tree-item:hover {
-  background-color: #3A4252;
-  color: #FFFFFF;
-}
-
-.tree-item.selected {
-  background-color: #3A4252;
-  color: #FFFFFF;
-}
-
-.tree-item.directory {
-  font-weight: 500;
-}
-
-.tree-indent {
-  margin-left: 20px;
-}
-
-/* File Browser */
 .browser-header {
   color: #FFFFFF;
   font-size: 16px;
@@ -100,106 +58,9 @@
   margin-bottom: 16px;
 }
 
-.action-buttons {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-}
 
-.action-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background-color: #4A5260;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
 
-.action-btn:hover {
-  background-color: #5A6270;
-}
 
-/* File Table */
-.file-table {
-  width: 100%;
-  border-collapse: collapse;
-  color: #FFFFFF;
-}
-
-.file-table thead {
-  border-bottom: 1px solid #4A5260;
-}
-
-.file-table th {
-  padding: 12px;
-  text-align: left;
-  font-weight: 500;
-  color: #A0A0A0;
-  font-size: 14px;
-}
-
-.file-table td {
-  padding: 12px;
-  border-bottom: 1px solid #3A4252;
-}
-
-.file-row {
-  transition: background-color 0.2s;
-}
-
-.file-row:hover {
-  background-color: #3A4252;
-}
-
-.file-name {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #FFFFFF;
-}
-
-.file-icon {
-  font-size: 16px;
-}
-
-.file-size {
-  color: #A0A0A0;
-}
-
-.open-btn {
-  background: none;
-  border: none;
-  color: #4A90E2;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-
-.open-btn:hover {
-  background-color: rgba(74, 144, 226, 0.1);
-}
-
-.delete-btn {
-  background: none;
-  border: none;
-  color: #A0A0A0;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 4px;
-  border-radius: 4px;
-  transition: color 0.2s;
-}
-
-.delete-btn:hover {
-  color: #DC3545;
-}
 
 
 

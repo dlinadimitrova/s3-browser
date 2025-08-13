@@ -40,7 +40,6 @@ const ModalAddFile: React.FC<ModalAddFileProps> = ({
     onClose();
   };
 
-  // Check if form is valid
   const isFormValid = fileName.trim().length > 0 && isNameValid;
 
   if (!isOpen) return null;

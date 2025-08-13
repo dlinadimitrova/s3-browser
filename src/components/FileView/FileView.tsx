@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import type { S3Object, S3Service } from '../../shared/models/interfaces';
-import { ModalAddFile, ModalAddFolder } from '../../dialogs';
-import { EmptyState } from '../../shared/components';
-import { BROWSER_PAGE_DEFAULTS } from '../../shared/constants/constants';
-import { isDirectory, getParentPrefix } from '../../shared/utils/fileUtils';
+import { ModalAddFile, ModalAddFolder, ModalShowContent } from '../../dialogs';
+import { EmptyState, LoadingState } from '../../shared/components';
+import { BROWSER_PAGE_DEFAULTS, LOADING_STATE_DEFAULTS } from '../../shared/constants/constants';
+import { isDirectory, getParentPrefix, getFileName } from '../../shared/utils/fileUtils';
 import ActionButtons from './ActionButtons/ActionButtons';
 import DirectoryInfo from './DirectoryInfo/DirectoryInfo';
 import FileList from './FileList/FileList';
@@ -16,6 +16,7 @@ interface FileViewProps {
   bucketName: string;
   onRefresh: () => void;
   onPrefixSelect?: (prefix: string) => void;
+  loading?: boolean;
 }
 
 const FileView: React.FC<FileViewProps> = ({
@@ -25,9 +26,13 @@ const FileView: React.FC<FileViewProps> = ({
   bucketName,
   onRefresh,
   onPrefixSelect,
+  loading = false,
 }) => {
   const [isAddFileOpen, setIsAddFileOpen] = useState(false);
   const [isAddFolderOpen, setIsAddFolderOpen] = useState(false);
+  const [isShowContentOpen, setIsShowContentOpen] = useState(false);
+  const [fileContent, setFileContent] = useState('');
+  const [selectedFileName, setSelectedFileName] = useState('');
 
   const existingFiles: string[] = objects
     .filter(obj => !obj.isDirectory)
@@ -68,11 +73,21 @@ const FileView: React.FC<FileViewProps> = ({
     }
   };
 
-  const handleObjectClick = (object: S3Object) => {
+  const handleObjectClick = async (object: S3Object) => {
     if (object.isDirectory) {
       onPrefixSelect?.(object.key);
     } else {
-      // TODO: Handle file click (download, preview, etc.)
+      try {
+        const fileName = getFileName(object.key);
+        setSelectedFileName(fileName);
+        setFileContent('Loading file content...');
+        setIsShowContentOpen(true);
+        
+        const content = await s3Service.getObjectContent(bucketName, object.key);
+        setFileContent(content || 'File is empty or could not be read.');
+      } catch {
+        setFileContent('Failed to load file content. The file might be too large, binary, or inaccessible.');
+      }
     }
   };
 
@@ -99,7 +114,6 @@ const FileView: React.FC<FileViewProps> = ({
       try {
         await s3Service.deleteObject(bucketName, currentPrefix);
         onRefresh();
-        // Navigate to parent directory after deletion
         const parentPrefix = getParentPrefix(currentPrefix);
         onPrefixSelect?.(parentPrefix);
       } catch {
@@ -111,7 +125,10 @@ const FileView: React.FC<FileViewProps> = ({
   return (
     <div className="file-view">
       <div className="working-directory">
-        <DirectoryInfo currentPrefix={currentPrefix} />
+        <DirectoryInfo 
+          currentPrefix={currentPrefix} 
+          onPrefixSelect={onPrefixSelect}
+        />
         
         <ActionButtons
           onCreateFolder={() => setIsAddFolderOpen(true)}
@@ -120,11 +137,18 @@ const FileView: React.FC<FileViewProps> = ({
         />
       </div>
 
-      {objects.length === 0 ? (
+      {loading && (
+        <LoadingState 
+          message={LOADING_STATE_DEFAULTS.MESSAGE}
+          icon={LOADING_STATE_DEFAULTS.ICON}
+        />
+      )}
+
+      {objects.length === 0 && !loading ? (
         <EmptyState 
-          title={BROWSER_PAGE_DEFAULTS.EMPTY_BUCKET_TITLE as string}
-          message={BROWSER_PAGE_DEFAULTS.EMPTY_BUCKET_MESSAGE as string}
-          icon={BROWSER_PAGE_DEFAULTS.EMPTY_BUCKET_ICON as string}
+          title={BROWSER_PAGE_DEFAULTS.EMPTY_BUCKET_TITLE}
+          message={BROWSER_PAGE_DEFAULTS.EMPTY_BUCKET_MESSAGE}
+          icon={BROWSER_PAGE_DEFAULTS.EMPTY_BUCKET_ICON}
         />
       ) : (
         <FileList
@@ -146,6 +170,13 @@ const FileView: React.FC<FileViewProps> = ({
         onClose={() => setIsAddFolderOpen(false)}
         onCreate={handleCreateFolder}
         existingFolders={existingFolders}
+      />
+
+      <ModalShowContent
+        isOpen={isShowContentOpen}
+        onClose={() => setIsShowContentOpen(false)}
+        title={selectedFileName}
+        content={fileContent}
       />
     </div>
   );

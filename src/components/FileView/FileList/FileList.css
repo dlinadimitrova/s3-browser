@@ -1,4 +1,3 @@
-/* FileList Styles */
 .file-list {
   flex: 1;
   overflow-y: auto;
@@ -33,7 +32,9 @@
   border-bottom: 1px solid #3A4252;
 }
 
+
 .file-row {
+  width: 100%;
   transition: background-color 0.2s;
   cursor: pointer;
 }
@@ -81,7 +82,8 @@
 }
 
 .open-btn:hover {
-  background-color: rgba(74, 144, 226, 0.1);
+  color: #A0A0A0;
+  text-decoration: underline;
 }
 
 .delete-btn {
@@ -97,4 +99,28 @@
 
 .delete-btn:hover {
   color: #DC3545;
+}
+
+.file-list::-webkit-scrollbar {
+  width: 12px;
+}
+
+.file-list::-webkit-scrollbar-track {
+  background: #2F3645;
+  border-radius: 4px;
+}
+
+.file-list::-webkit-scrollbar-thumb {
+  background: #4A5260;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.file-list::-webkit-scrollbar-thumb:hover {
+  background: #5A6270;
+}
+
+.file-list {
+  scrollbar-width: thin;
+  scrollbar-color: #4A5260 #2F3645;
 }
