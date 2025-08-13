@@ -41,7 +41,7 @@ function App() {
       
       <div className="auth-panel">
         <div className="auth-title">Authentication</div>
-        <AuthForm onLogin={handleLogin} isConnected={isAuthenticated} />
+        <AuthForm onLogin={handleLogin} />
       </div>
 
       {!loginState && !isAuthenticated && (

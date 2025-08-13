@@ -70,7 +70,6 @@ export const AUTH_FORM_DEFAULTS: AuthFormDefaults = {
   },
   BUTTON_TEXT: {
     CONNECT: 'Connect',
-    CONNECTED: 'Connected',
   },
   REGION_OPTIONS: [
     { value: 'us-east-1', label: 'US East (N. Virginia)' },

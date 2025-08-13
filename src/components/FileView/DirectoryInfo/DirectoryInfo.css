@@ -1,12 +1,12 @@
 .directory-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   color: #FFFFFF;
 }
 
 .directory-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 8px;
 }
 
@@ -22,6 +22,9 @@
   gap: 4px;
   color: #A0A0A0;
   font-size: 14px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-height: 24px;
 }
 
 .breadcrumb-item {

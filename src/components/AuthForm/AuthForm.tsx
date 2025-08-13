@@ -4,7 +4,6 @@ import './AuthForm.css';
 
 interface AuthFormProps {
   onLogin: (credentials: { accessKeyId: string; secretAccessKey: string; region: string; bucketName: string }) => void;
-  isConnected?: boolean;
 }
 
 interface InputConfig {
@@ -54,7 +53,7 @@ const createInputConfigs = (
   },
 ];
 
-const AuthForm: React.FC<AuthFormProps> = ({ onLogin, isConnected = false }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ onLogin }) => {
   const [accessKeyId, setAccessKeyId] = useState('');
   const [secretAccessKey, setSecretAccessKey] = useState('');
   const [region, setRegion] = useState(AUTH_FORM_DEFAULTS.DEFAULT_REGION);
@@ -128,7 +127,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onLogin, isConnected = false }) => 
         type="button" 
         onClick={handleSubmit}
       >
-        {isConnected ? AUTH_FORM_DEFAULTS.BUTTON_TEXT.CONNECTED : AUTH_FORM_DEFAULTS.BUTTON_TEXT.CONNECT}
+        {AUTH_FORM_DEFAULTS.BUTTON_TEXT.CONNECT}
       </button>
     </div>
   );

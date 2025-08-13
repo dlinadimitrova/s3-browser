@@ -95,7 +95,6 @@ export interface AuthFormDefaults {
   };
   BUTTON_TEXT: {
     CONNECT: string;
-    CONNECTED: string;
   };
   REGION_OPTIONS: Array<{
     value: string;

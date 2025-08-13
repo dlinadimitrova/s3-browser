@@ -2,8 +2,13 @@ import React from 'react';
 import type { S3Object } from '../../shared/models/interfaces';
 import { useTreeData } from '../../hooks/useTreeData';
 import type { TreeNode } from '../../hooks/useTreeData';
-import { FiChevronDown, FiChevronRight, FiCircle, FiFolder } from 'react-icons/fi';
+import { FiChevronDown, FiChevronRight, FiFolder } from 'react-icons/fi';
 import './TreeView.css';
+
+const TREE_INDENTATION = {
+  BASE_PADDING: 12,
+  LEVEL_INCREMENT: 20,
+} as const;
 
 interface TreeViewProps {
   buckets: string[];
@@ -25,6 +30,10 @@ const TreeView: React.FC<TreeViewProps> = ({
 }) => {
   const treeData = useTreeData({ objects });
 
+  const calculateTreePadding = (level: number): number => {
+    return TREE_INDENTATION.BASE_PADDING + (level * TREE_INDENTATION.LEVEL_INCREMENT);
+  };
+
   const toggleExpanded = (path: string) => {
     const newExpanded = new Set(expandedNodes);
     if (newExpanded.has(path)) {
@@ -42,14 +51,13 @@ const TreeView: React.FC<TreeViewProps> = ({
   const renderTreeNode = (node: TreeNode, level: number = 0): React.ReactNode => {
     const isExpanded = expandedNodes.has(node.path);
     const isActive = currentPrefix === node.path;
-    const hasChildren = node.children.length > 0;
     const canExpand = node.hasSubdirectories;
 
     return (
       <div key={node.path}>
         <div 
           className={`tree-item ${isActive ? 'active' : ''}`}
-          style={{ paddingLeft: `${level * 20 + 12}px` }}
+          style={{ paddingLeft: `${calculateTreePadding(level)}px` }}
           onClick={() => {
             if (canExpand) {
               toggleExpanded(node.path);
@@ -58,15 +66,11 @@ const TreeView: React.FC<TreeViewProps> = ({
           onDoubleClick={() => handleNodeDoubleClick(node.path)}
         >
           {canExpand && (
-            <span className={`tree-arrow ${isExpanded ? 'expanded' : ''}`}>
+            <span className="tree-arrow">
               {isExpanded ? <FiChevronDown /> : <FiChevronRight />}
             </span>
           )}
-          {!canExpand && hasChildren && (
-            <span className="tree-arrow-placeholder">
-              <FiCircle />
-            </span>
-          )}
+
           <span className="tree-icon">
             <FiFolder />
           </span>
