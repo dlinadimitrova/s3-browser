@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import AuthForm from './components/AuthForm/AuthForm';
 import BrowserPage from './pages/BrowserPage';
 import { EmptyState } from './shared/components';
-import { EMPTY_STATE_DEFAULTS, STORAGE_KEYS } from './shared/constants/constants';
+import { EMPTY_STATE_DEFAULTS } from './shared/constants/constants';
 import type { AWSCredentials } from './shared/models/interfaces';
 import styles from './App.module.css';
 
@@ -15,14 +15,14 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const savedConfig = localStorage.getItem(STORAGE_KEYS.S3_CONFIG);
+    const savedConfig = localStorage.getItem('s3Config');
     if (savedConfig) {
       try {
         const config = JSON.parse(savedConfig);
         setLoginState(config);
         setIsAuthenticated(true);
       } catch {
-        localStorage.removeItem(STORAGE_KEYS.S3_CONFIG);
+        localStorage.removeItem('s3Config');
       }
     }
   }, []);
@@ -30,15 +30,12 @@ function App() {
   const handleLogin = (data: LoginState) => {
     setLoginState(data);
     setIsAuthenticated(true);
-    localStorage.setItem(STORAGE_KEYS.S3_CONFIG, JSON.stringify(data));
+    localStorage.setItem('s3Config', JSON.stringify(data));
   };
 
   return (
     <div className={styles.app}>
-      <div className={styles.authPanel}>
-        <div className={styles.authTitle}>Authentication</div>
         <AuthForm onLogin={handleLogin} />
-      </div>
       {!loginState && !isAuthenticated && (
         <EmptyState 
           title={EMPTY_STATE_DEFAULTS.TITLE}

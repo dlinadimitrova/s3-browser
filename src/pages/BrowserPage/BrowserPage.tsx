@@ -30,12 +30,12 @@ const BrowserPage: React.FC<BrowserPageProps> = ({ credentials, bucketName }) =>
   if (error) {
     return (
       <div className={styles.browserPage}>
-          <ErrorState 
-            title={ERROR_STATE_DEFAULTS.TITLE}
-            message={error}
-            icon={ERROR_STATE_DEFAULTS.ICON}
-          />
-        </div>
+        <ErrorState 
+          title={ERROR_STATE_DEFAULTS.TITLE}
+          message={error}
+          icon={ERROR_STATE_DEFAULTS.ICON}
+        />
+      </div>
     );
   }
 

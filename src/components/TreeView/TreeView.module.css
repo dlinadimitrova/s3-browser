@@ -4,8 +4,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  scrollbar-width: thin;
-  scrollbar-color: #4A5260 #2F3645;
 }
 
 .treeContent {
@@ -75,25 +73,3 @@
   text-overflow: ellipsis;
   min-width: 0;
 } 
-
-.treeView::-webkit-scrollbar {
-  width: 12px;
-}
-
-.treeView::-webkit-scrollbar-track {
-  background: #2F3645;
-  border-radius: 4px;
-}
-
-.treeView::-webkit-scrollbar-thumb {
-  background: #4A5260;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-
-.treeView::-webkit-scrollbar-thumb:hover {
-  background: #5A6270;
-}
-
-
-

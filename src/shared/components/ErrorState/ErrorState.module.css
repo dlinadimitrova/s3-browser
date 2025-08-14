@@ -65,20 +65,3 @@
   white-space: pre-wrap;
   word-break: break-word;
 }
-
-.errorStateRetry {
-  background-color: #DC3545;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 16px;
-}
-
-.errorStateRetry:hover {
-  background-color: #C82333;
-} 

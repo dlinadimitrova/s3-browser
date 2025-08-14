@@ -22,8 +22,6 @@ export class S3Service {
     });
   }
 
-
-
   async listAllObjects(bucket: string, prefix: string = ''): Promise<S3Object[]> {
     try {
       const command = new ListObjectsV2Command({
@@ -135,7 +133,6 @@ export class S3Service {
         return '';
       }
 
-      // Convert the readable stream to string
       const streamReader = response.Body.transformToString();
       const content = await streamReader;
       

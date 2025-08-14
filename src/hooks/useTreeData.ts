@@ -16,7 +16,7 @@ export const useTreeData = ({ objects }: UseTreeDataProps): TreeNode => {
   return useMemo(() => {
     const folderMap = new Map<string, TreeNode>();
     
-    // Initialize root
+
     const root: TreeNode = {
       name: 'Root',
       path: '',
@@ -25,7 +25,7 @@ export const useTreeData = ({ objects }: UseTreeDataProps): TreeNode => {
     };
     folderMap.set('', root);
     
-    // Process all directory objects
+
     objects.forEach((object) => {
       if (object.isDirectory) {
         const parts = object.key.split('/').filter(Boolean);
@@ -35,7 +35,6 @@ export const useTreeData = ({ objects }: UseTreeDataProps): TreeNode => {
           const parentPath = currentPath;
           currentPath += part + '/';
           
-          // Create node if it doesn't exist
           if (!folderMap.has(currentPath)) {
             const node: TreeNode = {
               name: part,
@@ -45,7 +44,6 @@ export const useTreeData = ({ objects }: UseTreeDataProps): TreeNode => {
             };
             folderMap.set(currentPath, node);
             
-            // Add to parent's children
             const parent = folderMap.get(parentPath);
             if (parent) {
               parent.children.push(node);

@@ -2,14 +2,23 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
+  background-color: #2F3645;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.authTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 20px;
 }
 
 .authFormGroup {
   display: flex;
   flex-direction: row;
   gap: 8px;
-  width: 100%;
 }
 
 .formLabel {

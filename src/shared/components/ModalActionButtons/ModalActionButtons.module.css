@@ -24,17 +24,4 @@
 .btn:not(:disabled):hover {
   background-color: #5A6270;
 }
-
-.btnSecondary {
-  background-color: #4A5260;
-  color: #FFFFFF;
-}
-
-.btnPrimary {
-  background-color: #4A90E2;
-  color: #FFFFFF;
-}
-
-.btnPrimary:hover {
-  background-color: #357ABD;
-} 
+ 

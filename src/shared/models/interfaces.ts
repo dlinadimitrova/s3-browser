@@ -1,13 +1,11 @@
 import type { IconType } from 'react-icons';
 
-// AWS Credentials interface
 export interface AWSCredentials {
   accessKeyId: string;
   secretAccessKey: string;
   region: string;
 }
 
-// S3 Object interface
 export interface S3Object {
   key: string;
   isDirectory: boolean;
@@ -15,13 +13,11 @@ export interface S3Object {
   size?: number;
 }
 
-// S3 Bucket interface
 export interface S3Bucket {
   name: string;
   creationDate?: Date;
 }
 
-// File upload interface
 export interface FileUpload {
   file: File;
   bucket: string;
@@ -29,7 +25,6 @@ export interface FileUpload {
   progress?: number;
 }
 
-// Application state interface
 export interface AppState {
   isAuthenticated: boolean;
   currentPrefix: string;
@@ -40,7 +35,6 @@ export interface AppState {
   objects?: S3Object[];
 }
 
-// S3Service class type
 export interface S3Service {
   listAllObjects(bucket: string, prefix?: string): Promise<S3Object[]>;
   deleteObject(bucket: string, key: string): Promise<void>;
@@ -49,7 +43,6 @@ export interface S3Service {
   getObjectContent(bucket: string, key: string): Promise<string>;
 }
 
-// Constants interfaces
 export interface EmptyStateDefaults {
   TITLE: string;
   MESSAGE: string;
@@ -103,9 +96,4 @@ export interface AuthFormDefaults {
   DEFAULT_REGION: string;
 }
 
-export interface StorageKeys {
-  S3_OBJECTS: string;
-  S3_OBJECTS_TIMESTAMP: string;
-  S3_REFRESH_TRIGGER: string;
-  S3_CONFIG: string;
-}
+

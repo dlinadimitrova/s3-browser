@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AUTH_FORM_DEFAULTS, STORAGE_KEYS } from '../../shared/constants/constants';
+import { AUTH_FORM_DEFAULTS } from '../../shared/constants/constants';
 import styles from './AuthForm.module.css';
 
 interface AuthFormProps {
@@ -60,7 +60,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onLogin }) => {
   const [bucketName, setBucketName] = useState('');
 
   useEffect(() => {
-    const savedConfig = localStorage.getItem(STORAGE_KEYS.S3_CONFIG);
+          const savedConfig = localStorage.getItem('s3Config');
     if (savedConfig) {
       try {
         const config = JSON.parse(savedConfig);
@@ -69,13 +69,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ onLogin }) => {
         setRegion(config.region || AUTH_FORM_DEFAULTS.DEFAULT_REGION);
         setBucketName(config.bucketName || '');
       } catch {
-        // Silent fail
       }
     }
   }, []);
 
   const handleSubmit = () => {
-    console.log('Connect button clicked with credentials:', { bucketName, region, accessKeyId: accessKeyId ? '***' : 'empty' });
     onLogin({ accessKeyId, secretAccessKey, region, bucketName });
   };
 
@@ -102,6 +100,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onLogin }) => {
 
   return (
     <div className={styles.authForm}>
+      <div className={styles.authTitle}>Authentication</div>
       {inputConfigs.map((config) => (
         <div key={config.id} className={styles.authFormGroup}>
           <div className={styles.formLabel}>{config.label}</div>
