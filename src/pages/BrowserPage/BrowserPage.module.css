@@ -3,12 +3,12 @@
   overflow-y: auto;
   flex: 1;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-2xl);
 }
 
 .browserHeader {
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 16px;
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-xl);
 } 

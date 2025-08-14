@@ -147,7 +147,7 @@ const FileView: React.FC<FileViewProps> = ({
       {objects.length === 0 && !loading ? (
         <EmptyState 
           title={BROWSER_PAGE_DEFAULTS.EMPTY_BUCKET_TITLE}
-          message={BROWSER_PAGE_DEFAULTS.EMPTY_BUCKET_MESSAGE}
+          message={BROWSER_PAGE_DEFAULTS.EMPTY_FOLDER_MESSAGE}
           icon={BROWSER_PAGE_DEFAULTS.EMPTY_BUCKET_ICON}
         />
       ) : (

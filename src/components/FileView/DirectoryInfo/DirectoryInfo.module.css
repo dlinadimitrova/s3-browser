@@ -1,47 +1,47 @@
 .directoryInfo {
   display: flex;
   align-items: flex-start;
-  color: #FFFFFF;
+  color: var(--color-text);
 }
 
 .directoryContent {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .directoryLabel {
-  color: #FFFFFF;
-  font-weight: 500;
-  font-size: 16px;
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
 }
 
 .breadcrumb {
   display: flex;
   align-items: center;
-  gap: 4px;
-  color: #A0A0A0;
-  font-size: 14px;
+  gap: var(--spacing-xs);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
   flex-wrap: wrap;
   flex: 1;
   min-height: 24px;
 }
 
 .breadcrumbItem {
-  color: #4A90E2;
+  color: var(--color-primary);
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color var(--transition-fast);
 }
 
 .breadcrumbClickable {
   cursor: pointer;
-  transition: all 0.2s ease;
-  padding: 2px 4px;
-  border-radius: 4px;
+  transition: all var(--transition-fast) ease;
+  padding: var(--spacing-xs) var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
 }
 
 .breadcrumbClickable:hover {
-  color: #357ABD;
+  color: var(--color-primary-hover);
   text-decoration: underline;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .breadcrumbActive {
-  color: #FFFFFF !important;
+  color: var(--color-text) !important;
 }
 
 .breadcrumbActive:hover {
@@ -58,8 +58,8 @@
 }
 
 .breadcrumbSeparator {
-  color: #A0A0A0;
-  font-size: 14px;
-  margin: 0 4px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin: 0 var(--spacing-xs);
   flex-shrink: 0;
 }

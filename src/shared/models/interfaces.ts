@@ -59,6 +59,7 @@ export interface BrowserPageDefaults {
   LOADING_MESSAGE: string;
   EMPTY_BUCKET_TITLE: string;
   EMPTY_BUCKET_MESSAGE: string;
+  EMPTY_FOLDER_MESSAGE: string;
   EMPTY_BUCKET_ICON: IconType;
   ERROR_MESSAGE_PREFIX: string;
 }

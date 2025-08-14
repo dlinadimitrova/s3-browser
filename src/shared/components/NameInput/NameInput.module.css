@@ -1,41 +1,41 @@
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .formLabel {
-  color: #FFFFFF;
-  font-weight: 500;
-  font-size: 14px;
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
 }
 
 .formInput {
-  padding: 8px 12px;
-  background-color: #22262F;
-  border: 1px solid #4A5260;
-  border-radius: 6px;
-  color: #FFFFFF;
-  font-size: 14px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--color-background-secondary);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
   width: 100%;
   box-sizing: border-box;
 }
 
 .formInput::placeholder {
-  color: #A0A0A0;
+  color: var(--color-text-secondary);
 }
 
 .formInput:focus {
   outline: none;
-  border-color: #4A90E2;
+  border-color: var(--color-primary);
 }
 
 .formInputError {
-  border-color: #DC3545;
+  border-color: var(--color-error);
 }
 
 .errorMessage {
-  color: #DC3545;
-  font-size: 12px;
-  margin-top: 4px;
+  color: var(--color-error);
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-xs);
 } 

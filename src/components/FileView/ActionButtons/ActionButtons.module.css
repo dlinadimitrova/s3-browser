@@ -1,28 +1,28 @@
 .actionButtons {
   display: flex;
-  gap: 12px;
+  gap: var(--spacing-lg);
 }
 
 .actionBtn {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background-color: #4A5260;
-  color: #FFFFFF;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--color-border);
+  color: var(--color-text);
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition-fast);
 }
 
 .actionBtn:hover {
-  background-color: #5A6270;
+  background-color: var(--color-background-hover);
 }
 
 .actionBtn:disabled {
-  background-color: #3A4252;
-  color: #A0A0A0;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text-secondary);
   cursor: not-allowed;
 } 

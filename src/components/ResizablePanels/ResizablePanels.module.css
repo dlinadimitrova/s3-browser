@@ -5,8 +5,8 @@
 }
 
 .leftPanel {
-  background-color: #2F3645;
-  border-radius: 10px 0 0 10px;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
   padding: 2px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -15,24 +15,24 @@
 
 .rightPanel {
   flex: 1;
-  background-color: #2F3645;
-  border-radius: 0 10px 10px 0;
-  padding: 8px;
+  background-color: var(--color-background);
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  padding: var(--spacing-md);
   overflow-y: auto;
 }
 
 .resizer {
   width: 2px;
-  background-color: #4A5260;
+  background-color: var(--color-border);
   cursor: col-resize;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition-fast);
   flex-shrink: 0;
 }
 
 .resizer:hover {
-  background-color: #5A6270;
+  background-color: var(--color-background-hover);
 }
 
 .resizer.dragging {
-  background-color: #74A4E2;
+  background-color: var(--color-primary);
 } 

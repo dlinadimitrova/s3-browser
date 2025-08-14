@@ -3,50 +3,50 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: var(--spacing-lg);
   text-align: center;
-  background-color: #2F3645;
-  border-radius: 10px;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-lg);
   height: 100%;
   width: 100%;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .errorStateIcon {
   font-size: 48px;
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
   opacity: 0.8;
 }
 
 .errorStateTitle {
-  color: #FFFFFF;
-  font-size: 20px;
+  color: var(--color-text);
+  font-size: var(--font-size-xl);
   font-weight: 600;
-  margin: 0 0 8px 0;
+  margin: 0 0 var(--spacing-md) 0;
 }
 
 .errorStateMessage {
-  color: #A0A0A0;
-  font-size: 14px;
-  margin: 0 0 16px 0;
-  line-height: 1.5;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin: 0 0 var(--spacing-xl) 0;
+  line-height: var(--line-height-normal);
   max-width: 400px;
 }
 
 .errorStateDetails {
-  margin: 16px 0;
+  margin: var(--spacing-xl) 0;
   width: 100%;
   max-width: 500px;
 }
 
 .errorStateSummary {
-  color: #DC3545;
-  font-size: 14px;
-  font-weight: 500;
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-fast);
 }
 
 .errorStateSummary:hover {
@@ -55,11 +55,11 @@
 
 .errorStateError {
   background-color: #1A1A1A;
-  color: #DC3545;
-  font-size: 12px;
-  padding: 12px;
-  border-radius: 4px;
-  margin-top: 8px;
+  color: var(--color-error);
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-sm);
+  margin-top: var(--spacing-md);
   text-align: left;
   overflow-x: auto;
   white-space: pre-wrap;

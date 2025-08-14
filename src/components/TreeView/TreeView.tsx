@@ -29,6 +29,7 @@ const TreeView: React.FC<TreeViewProps> = ({
   onExpandedNodesChange,
 }) => {
   const treeData = useTreeData({ objects });
+  const clickTimeoutRef = React.useRef<number | null>(null);
 
   const calculateTreePadding = (level: number): number => {
     return TREE_INDENTATION.BASE_PADDING + (level * TREE_INDENTATION.LEVEL_INCREMENT);
@@ -44,7 +45,27 @@ const TreeView: React.FC<TreeViewProps> = ({
     onExpandedNodesChange(newExpanded);
   };
 
+  const handleNodeClick = (path: string, canExpand: boolean) => {
+    if (!canExpand) return;
+    
+    // Clear any existing timeout
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+    }
+    
+    // Set a timeout to execute the single click action
+    clickTimeoutRef.current = setTimeout(() => {
+      toggleExpanded(path);
+    }, 200); // 200ms delay to allow for double-click detection
+  };
+
   const handleNodeDoubleClick = (path: string) => {
+    // Clear the single click timeout to prevent expansion
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+      clickTimeoutRef.current = null;
+    }
+    
     onPrefixSelect(path);
   };
 
@@ -58,11 +79,7 @@ const TreeView: React.FC<TreeViewProps> = ({
         <div 
           className={`${styles.treeItem} ${isActive ? styles.active : ''}`}
           style={{ paddingLeft: `${calculateTreePadding(level)}px` }}
-          onClick={() => {
-            if (canExpand) {
-              toggleExpanded(node.path);
-            }
-          }}
+          onClick={() => handleNodeClick(node.path, canExpand)}
           onDoubleClick={() => handleNodeDoubleClick(node.path)}
         >
           {canExpand && (

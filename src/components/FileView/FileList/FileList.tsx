@@ -48,9 +48,9 @@ const FileList: React.FC<FileListProps> = ({ objects, onObjectClick, onDelete })
               onClick={() => handleObjectClick(object)}
             >
               <td className={styles.fileName}>
-                <span className={styles.fileIcon}>
+                <div className={styles.fileIcon}>
                   {object.isDirectory ? <FiFolder /> : <FiFile />}
-                </span>
+                </div>
                 {object.isDirectory ? getFolderName(object.key) : getFileName(object.key)}
               </td>
               <td className={styles.fileSize}>{formatFileSize(object.size)}</td>

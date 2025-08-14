@@ -26,6 +26,7 @@ export const ERROR_STATE_DEFAULTS: ErrorStateDefaults = {
 export const BROWSER_PAGE_DEFAULTS: BrowserPageDefaults = {
   LOADING_MESSAGE: "Loading S3 objects...",
   EMPTY_BUCKET_TITLE: "No Files or Folders Found",
+  EMPTY_FOLDER_MESSAGE: "This folder is empty. Create your first file or folder to get started.",  
   EMPTY_BUCKET_MESSAGE: "This bucket is empty. Create your first file or folder to get started.",
   EMPTY_BUCKET_ICON: FiFolder,
   ERROR_MESSAGE_PREFIX: "Failed to load objects: "

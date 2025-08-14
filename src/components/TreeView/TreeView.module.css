@@ -1,26 +1,28 @@
 .treeView {
-  color: #A0A0A0;
-  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
   height: 100%;
   display: flex;
   flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-background);
 }
 
 .treeContent {
   flex: 1;
   overflow-y: auto;
-  padding: 8px 12px 8px 8px;
+  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) var(--spacing-md);
   width: 100%;
 }
 
 .treeItem {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 18px;
-  border-radius: 6px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 18px;
+  border-radius: var(--border-radius-md);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition-fast);
   user-select: none;
   white-space: nowrap;
   width: 100%;
@@ -28,30 +30,30 @@
 }
 
 .treeItem:hover {
-  background-color: rgba(58, 66, 82, 0.6);
-  color: #FFFFFF;
+  background-color: var(--color-hover);
+  color: var(--color-text);
 }
 
 .treeItem.active {
-  background-color: rgba(74, 144, 226, 0.7);
-  color: #FFFFFF;
+  background-color: var(--color-active);
+  color: var(--color-text);
 }
 
 .treeItem.active:hover {
-  background-color: rgba(53, 122, 189, 0.8);
+  background-color: var(--color-active-hover);
 }
 
 .treeArrow {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   width: 16px;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s;
-  color: #A0A0A0;
+  transition: transform var(--transition-fast);
+  color: var(--color-text-secondary);
 }
 
 .treeArrow:hover {
-  color: #FFFFFF;
+  color: var(--color-text);
 }
 
 .treeArrowPlaceholder {
@@ -61,7 +63,7 @@
 }
 
 .treeIcon {
-  font-size: 16px;
+  font-size: var(--font-size-base);
   width: 16px;
   text-align: center;
 }

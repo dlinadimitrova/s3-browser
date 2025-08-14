@@ -1,47 +1,53 @@
 .fileList {
   flex: 1;
-  padding: 0px 16px;
+  padding: 0px var(--spacing-xl);
   overflow-y: auto;
-  color: #FFFFFF;
+  color: var(--color-text);
   scrollbar-width: thin;
-  scrollbar-color: #4A5260 #2F3645;
+  scrollbar-color: var(--color-border) var(--color-background);
 }
 
 .fileTable {
   width: 100%;
   border-collapse: collapse;
-  color: #FFFFFF;
-  border-radius: 6px;
+  color: var(--color-text);
+  border-radius: var(--border-radius-md);
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  table-layout: fixed;
 }
 
 .fileTable thead {
-  border-bottom: 1px solid #4A5260;
+  border-bottom: var(--border-width) solid var(--color-border);
 }
 
 .fileTable th {
-  padding: 12px;
+  padding: var(--spacing-lg);
   text-align: left;
-  font-weight: 500;
-  color: #A0A0A0;
-  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
   border-bottom: 2px solid #dee2e6;
+  height: 48px;
+  vertical-align: middle;
 }
 
 .fileTable td {
-  padding: 12px;
-  border-bottom: 1px solid #3A4252;
+  padding: var(--spacing-lg);
+  border-bottom: var(--border-width) solid var(--color-background-tertiary);
+  height: 48px;
+  vertical-align: middle;
+  box-sizing: border-box;
 }
 
 .fileRow {
   width: 100%;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition-fast);
   cursor: pointer;
 }
 
 .fileRow:hover {
-  background-color: #3A4252;
+  background-color: var(--color-background-tertiary);
 }
 
 .fileRow.directory {
@@ -51,72 +57,69 @@
 .fileName {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #FFFFFF;
+  gap: var(--spacing-md);
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .fileIcon {
-  font-size: 16px;
+  font-size: var(--font-size-base);
 }
 
-.fileSize,
-.fileDate {
-  color: #A0A0A0;
-  font-size: 14px;
+.fileSize {
+  height: 40px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .fileActions {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-md);
   align-items: center;
 }
 
 .openBtn {
   background: none;
   border: none;
-  color: #4A90E2;
+  color: var(--color-primary);
   cursor: pointer;
-  font-size: 14px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-fast);
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .openBtn:hover {
-  color: #A0A0A0;
+  color: var(--color-text-secondary);
   text-decoration: underline;
 }
 
 .deleteBtn {
   background: none;
   border: none;
-  color: #A0A0A0;
+  color: var(--color-text-secondary);
   cursor: pointer;
-  font-size: 14px;
-  padding: 4px;
-  border-radius: 4px;
-  transition: color 0.2s;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+  transition: color var(--transition-fast);
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .deleteBtn:hover {
-  color: #DC3545;
+  color: var(--color-error);
 }
 
-.fileList::-webkit-scrollbar {
-  width: 12px;
-}
-
-.fileList::-webkit-scrollbar-track {
-  background: #2F3645;
-  border-radius: 4px;
-}
-
-.fileList::-webkit-scrollbar-thumb {
-  background: #4A5260;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-
-.fileList::-webkit-scrollbar-thumb:hover {
-  background: #5A6270;
-}

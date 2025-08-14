@@ -1,72 +1,72 @@
 .authForm {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  background-color: #2F3645;
-  border-radius: 10px;
-  padding: 12px;
-  margin-bottom: 12px;
+  gap: var(--spacing-md);
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
 }
 
 .authTitle {
   font-size: 24px;
-  font-weight: bold;
-  color: #FFFFFF;
-  margin-bottom: 20px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-2xl);
 }
 
 .authFormGroup {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .formLabel {
-  color: #FFFFFF;
-  font-weight: 500;
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
   min-width: 120px;
 }
 
 .formInput,
 .formSelect {
   flex: 1;
-  padding: 8px 12px;
-  background-color: #22262F;
-  border: 1px solid #4A5260;
-  border-radius: 6px;
-  color: #FFFFFF;
-  font-size: 14px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--color-background-secondary);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
 }
 
 .formInput:focus,
 .formSelect:focus {
   outline: none;
-  border-color: #4A90E2;
+  border-color: var(--color-primary);
 }
 
 .formInput::placeholder,
 .formSelect::placeholder {
-  color: #A0A0A0;
+  color: var(--color-text-secondary);
 }
 
 .submitBtn {
   align-self: flex-end;
-  padding: 8px 16px;
-  background-color: #4A90E2;
-  color: #FFFFFF;
+  padding: var(--spacing-md) var(--spacing-xl);
+  background-color: var(--color-primary);
+  color: var(--color-text);
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition-fast);
 }
 
 .submitBtn:hover {
-  background-color: #357ABD;
+  background-color: var(--color-primary-hover);
 }
 
 .submitBtn:disabled {
-  background-color: #6c757d;
+  background-color: var(--color-background-tertiary);
   cursor: not-allowed;
 } 

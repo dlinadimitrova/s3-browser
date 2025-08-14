@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:prod": "vite build && vite preview"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.859.0",
